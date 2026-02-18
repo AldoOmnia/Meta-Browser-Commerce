@@ -9,10 +9,20 @@ struct RootView: View {
     @EnvironmentObject var appState: AppState
 
     var body: some View {
-        if !appState.hasCompletedPairingFlow {
-            PairingView()
-        } else {
-            MainTabView()
+        Group {
+            if !appState.hasSeenOmniaSplash {
+                OmniaSplashView()
+            } else if !appState.hasCompletedPairingFlow {
+                PairingView()
+            } else {
+                MainTabView()
+            }
+        }
+        .fullScreenCover(isPresented: $appState.isSearchSessionPresented, onDismiss: { }) {
+            SearchSessionView()
+        }
+        .onChange(of: appState.isSearchSessionPresented) { _, presented in
+            if presented { appState.isBrowserAgentActive = true }
         }
     }
 }
@@ -26,13 +36,9 @@ struct MainTabView: View {
                 .tabItem { Label("Home", systemImage: "house.fill") }
                 .tag(AppTab.home)
 
-            SearchResultsView()
-                .tabItem { Label("Search", systemImage: "magnifyingglass") }
-                .tag(AppTab.search)
-
-            CompareView()
-                .tabItem { Label("Compare", systemImage: "rectangle.on.rectangle.angled") }
-                .tag(AppTab.compare)
+            BrowserLiveView()
+                .tabItem { Label("Browser", systemImage: "globe") }
+                .tag(AppTab.browser)
 
             CartView()
                 .tabItem { Label("Cart", systemImage: "cart.fill") }

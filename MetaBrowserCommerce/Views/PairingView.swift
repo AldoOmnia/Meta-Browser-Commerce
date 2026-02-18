@@ -18,43 +18,41 @@ struct PairingView: View {
             VStack(spacing: 32) {
                 Spacer()
 
-                // Glasses illustration
-                RoundedRectangle(cornerRadius: 40)
-                    .fill(
-                        LinearGradient(
-                            colors: [AppTheme.cardBackground, AppTheme.cardBackgroundElevated],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 140, height: 70)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color(white: 0.15))
-                            .frame(width: 80, height: 24)
-                    )
-                    .overlay(RoundedRectangle(cornerRadius: 40).stroke(AppTheme.textTertiary, lineWidth: 2))
+                // Glasses image
+                Image("Glasses")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 260, height: 130)
                     .shadow(color: .black.opacity(0.4), radius: 12, x: 0, y: 8)
 
-                VStack(spacing: 12) {
-                    Circle()
-                        .fill(AppTheme.accent)
-                        .frame(width: 14, height: 14)
-                        .opacity(appState.isPairingInProgress ? 0.6 : 1)
-                        .scaleEffect(appState.isPairingInProgress ? 1.2 : 1)
-                        .animation(.easeInOut(duration: 2).repeatForever(autoreverses: true), value: appState.isPairingInProgress)
-
+                VStack(spacing: 16) {
                     Text("Connect Meta AI Glasses")
                         .font(.title2)
                         .fontWeight(.bold)
                         .foregroundStyle(AppTheme.textPrimary)
 
-                    Text("Put your glasses in pairing mode and tap below to connect via Meta DAT")
-                        .font(.callout)
-                        .foregroundStyle(AppTheme.textSecondary)
-                        .multilineTextAlignment(.center)
-                        .lineSpacing(4)
-                        .padding(.horizontal, 24)
+                    // Pairing steps
+                    VStack(alignment: .leading, spacing: 12) {
+                        pairingStep(number: 1, text: "Put your glasses in pairing mode")
+                        pairingStep(number: 2, text: "Tap Pair Glasses below")
+                        pairingStep(number: 3, text: "Follow the on-screen prompts")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(18)
+                    .background(AppTheme.cardBackground)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                    HStack(spacing: 8) {
+                        Circle()
+                            .fill(AppTheme.accent)
+                            .frame(width: 14, height: 14)
+                            .opacity(appState.isPairingInProgress ? 0.6 : 1)
+                            .scaleEffect(appState.isPairingInProgress ? 1.2 : 1)
+                            .animation(.easeInOut(duration: 2).repeatForever(autoreverses: true), value: appState.isPairingInProgress)
+                        Text(appState.isPairingInProgress ? "Searching for glasses..." : "Ready to connect")
+                            .font(.callout)
+                            .foregroundStyle(AppTheme.textSecondary)
+                    }
                 }
 
                 Spacer()
@@ -83,7 +81,19 @@ struct PairingView: View {
                     }
                 }
                 .padding(.horizontal, 24)
-                .padding(.bottom, 48)
+                .padding(.bottom, 16)
+
+                // Powered by Omnia (small, at very bottom)
+                HStack(spacing: 6) {
+                    Image("OmniaLogo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 18)
+                    Text("Powered by Omnia")
+                        .font(.caption2)
+                        .foregroundStyle(AppTheme.textTertiary)
+                }
+                .padding(.bottom, 24)
             }
         }
     }
@@ -102,5 +112,21 @@ struct PairingView: View {
     private func skipPairing() {
         appState.isPairingInProgress = false
         appState.hasCompletedPairingFlow = true
+    }
+
+    private func pairingStep(number: Int, text: String) -> some View {
+        HStack(alignment: .top, spacing: 12) {
+            Text("\(number)")
+                .font(.callout)
+                .fontWeight(.bold)
+                .foregroundStyle(.white)
+                .frame(width: 24, height: 24)
+                .background(AppTheme.accent)
+                .clipShape(Circle())
+            Text(text)
+                .font(.callout)
+                .foregroundStyle(AppTheme.textPrimary)
+            Spacer(minLength: 0)
+        }
     }
 }

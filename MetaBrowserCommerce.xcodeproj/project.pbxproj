@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BED96D52F464C87009CFF7D /* MWDATCamera in Frameworks */ = {isa = PBXBuildFile; productRef = 2BED96D42F464C87009CFF7D /* MWDATCamera */; };
+		2BED96D72F464C87009CFF7D /* MWDATCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2BED96D62F464C87009CFF7D /* MWDATCore */; };
+		2BED96D92F464C87009CFF7D /* MWDATMockDevice in Frameworks */ = {isa = PBXBuildFile; productRef = 2BED96D82F464C87009CFF7D /* MWDATMockDevice */; };
 		A1000001272F0001 /* MetaBrowserCommerceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000001272F0001 /* MetaBrowserCommerceApp.swift */; };
 		A1000002272F0002 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000002272F0002 /* AppState.swift */; };
 		A1000003272F0003 /* ProductResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000003272F0003 /* ProductResult.swift */; };
@@ -19,6 +22,19 @@
 		A100000A272F000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B100000A272F000A /* Assets.xcassets */; };
 		A100000B272F000B /* MetaDATService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000C272F000C /* MetaDATService.swift */; };
 		A100000C272F000C /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000D272F000D /* AppTheme.swift */; };
+		A100000D272F000D /* SearchSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000E272F000E /* SearchSessionView.swift */; };
+		A100000E272F000E /* PairingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000F272F0010 /* PairingSheetView.swift */; };
+		A100000F272F0010 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000010272F0011 /* SearchService.swift */; };
+		A1000010272F0010 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000011272F0012 /* SettingsView.swift */; };
+		A1000011272F0011 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000012272F0013 /* CheckoutView.swift */; };
+		A1000012272F0012 /* AnimatedPlaceholderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000013272F0014 /* AnimatedPlaceholderField.swift */; };
+		A1000013272F0013 /* PlatformLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000014272F0015 /* PlatformLoginView.swift */; };
+		A1000014272F0014 /* AmazonBrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000015272F0016 /* AmazonBrowseView.swift */; };
+		A1000015272F0015 /* PlatformConnectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000016272F0017 /* PlatformConnectionStore.swift */; };
+		A1000016272F0018 /* iPhoneCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000017272F0019 /* iPhoneCameraView.swift */; };
+		A1000017272F0020 /* BrowserLiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000018272F0021 /* BrowserLiveView.swift */; };
+		A1000018282F0022 /* OmniaSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000018292F0023 /* OmniaSplashView.swift */; };
+		A1000018302F0024 /* VoiceCommandCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000018312F0025 /* VoiceCommandCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +52,19 @@
 		B100000B272F000B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B100000C272F000C /* MetaDATService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDATService.swift; sourceTree = "<group>"; };
 		B100000D272F000D /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		B100000E272F000E /* SearchSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSessionView.swift; sourceTree = "<group>"; };
+		B100000F272F0010 /* PairingSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingSheetView.swift; sourceTree = "<group>"; };
+		B1000010272F0011 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		B1000011272F0012 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B1000012272F0013 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		B1000013272F0014 /* AnimatedPlaceholderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedPlaceholderField.swift; sourceTree = "<group>"; };
+		B1000014272F0015 /* PlatformLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLoginView.swift; sourceTree = "<group>"; };
+		B1000015272F0016 /* AmazonBrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazonBrowseView.swift; sourceTree = "<group>"; };
+		B1000016272F0017 /* PlatformConnectionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformConnectionStore.swift; sourceTree = "<group>"; };
+		B1000017272F0019 /* iPhoneCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneCameraView.swift; sourceTree = "<group>"; };
+		B1000018272F0021 /* BrowserLiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserLiveView.swift; sourceTree = "<group>"; };
+		B1000018292F0023 /* OmniaSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmniaSplashView.swift; sourceTree = "<group>"; };
+		B1000018312F0025 /* VoiceCommandCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCommandCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +72,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BED96D52F464C87009CFF7D /* MWDATCamera in Frameworks */,
+				2BED96D92F464C87009CFF7D /* MWDATMockDevice in Frameworks */,
+				2BED96D72F464C87009CFF7D /* MWDATCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +121,17 @@
 				B1000007272F0007 /* SearchResultsView.swift */,
 				B1000008272F0008 /* CompareView.swift */,
 				B1000009272F0009 /* CartView.swift */,
+				B100000E272F000E /* SearchSessionView.swift */,
+				B100000F272F0010 /* PairingSheetView.swift */,
+				B1000011272F0012 /* SettingsView.swift */,
+				B1000012272F0013 /* CheckoutView.swift */,
+				B1000013272F0014 /* AnimatedPlaceholderField.swift */,
+				B1000014272F0015 /* PlatformLoginView.swift */,
+				B1000015272F0016 /* AmazonBrowseView.swift */,
+				B1000017272F0019 /* iPhoneCameraView.swift */,
+				B1000018272F0021 /* BrowserLiveView.swift */,
+				B1000018292F0023 /* OmniaSplashView.swift */,
+				B1000018312F0025 /* VoiceCommandCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -105,6 +148,8 @@
 			isa = PBXGroup;
 			children = (
 				B100000C272F000C /* MetaDATService.swift */,
+				B1000010272F0011 /* SearchService.swift */,
+				B1000016272F0017 /* PlatformConnectionStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -145,7 +190,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					E0000001272F0000 = {
 						CreatedOnToolsVersion = 15.0;
@@ -161,6 +206,9 @@
 				Base,
 			);
 			mainGroup = D0000001272F0000;
+			packageReferences = (
+				2BED96D32F464C87009CFF7D /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */,
+			);
 			productRefGroup = D0000003272F0000 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -197,6 +245,19 @@
 				A1000009272F0009 /* CartView.swift in Sources */,
 				A100000B272F000B /* MetaDATService.swift in Sources */,
 				A100000C272F000C /* AppTheme.swift in Sources */,
+				A100000D272F000D /* SearchSessionView.swift in Sources */,
+				A100000E272F000E /* PairingSheetView.swift in Sources */,
+				A100000F272F0010 /* SearchService.swift in Sources */,
+				A1000010272F0010 /* SettingsView.swift in Sources */,
+				A1000011272F0011 /* CheckoutView.swift in Sources */,
+				A1000012272F0012 /* AnimatedPlaceholderField.swift in Sources */,
+				A1000013272F0013 /* PlatformLoginView.swift in Sources */,
+				A1000014272F0014 /* AmazonBrowseView.swift in Sources */,
+				A1000015272F0015 /* PlatformConnectionStore.swift in Sources */,
+				A1000016272F0018 /* iPhoneCameraView.swift in Sources */,
+				A1000017272F0020 /* BrowserLiveView.swift in Sources */,
+				A1000018282F0022 /* OmniaSplashView.swift in Sources */,
+				A1000018302F0024 /* VoiceCommandCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,11 +274,29 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -225,11 +304,18 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -245,17 +331,42 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -346,6 +457,33 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2BED96D32F464C87009CFF7D /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/meta-wearables-dat-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2BED96D42F464C87009CFF7D /* MWDATCamera */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BED96D32F464C87009CFF7D /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATCamera;
+		};
+		2BED96D62F464C87009CFF7D /* MWDATCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BED96D32F464C87009CFF7D /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATCore;
+		};
+		2BED96D82F464C87009CFF7D /* MWDATMockDevice */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BED96D32F464C87009CFF7D /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATMockDevice;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F0000001272F0000 /* Project object */;
 }

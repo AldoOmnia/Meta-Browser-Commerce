@@ -24,6 +24,48 @@ Meta Browser Commerce lets users search, compare, and buy products by voice on M
 2. Select iPhone simulator (e.g. iPhone 17) and run (⌘R).
 3. Add Meta DAT: **File → Add Package Dependencies** → `https://github.com/facebook/meta-wearables-dat-ios`
 
+### Test the full flow
+
+1. **Pair CTA** – If you skipped pairing, a "Pair Meta AI Glasses" banner appears on Home. Tap to pair.
+2. **Search** – Type a query (e.g. "running shoes") and tap the search button, or tap any voice example.
+3. **Browser view** – A Nike.com search loads in a WebView; results appear below.
+4. **Add to cart** – Tap "Add to Cart" on a result → navigates to Cart tab.
+5. **Checkout** – Tap "Checkout" for confirmation.
+
+### Trigger search from command line
+
+With the app running in the simulator:
+
+```bash
+xcrun simctl openurl booted "metabrowsercommerce://search?q=running+shoes"
+```
+
+### Features
+
+| Feature | Description |
+|--------|-------------|
+| **Animated placeholder** | Test flow field cycles through example prompts (light grey, fade) |
+| **Settings** | Top-right gear icon → manage 3rd party platform logins (Amazon, Nike, Target, Walmart, Best Buy) |
+| **Launch Glasses Camera** | Search tab → prominent button to start camera/voice on AI Glasses |
+| **Confirm flow** | Results → tap product → "Confirm & Add to cart?" → Cart → Checkout (Review → Payment → Confirm) |
+
+### Amazon login (known limitation)
+
+Amazon often blocks in-app WebView login. If Connect fails:
+
+1. Use **"Open in Safari instead"** in the login screen
+2. Sign in via Safari (session lives in Safari, not in-app)
+3. For in-app browsing with login: use [Login with Amazon](https://developer.amazon.com/docs/login-with-amazon/ios-docs.html) (requires Amazon Developer registration)
+
+### Glasses camera workflow (VisionClaw-inspired)
+
+See **[VISION_WORKFLOW.md](VISION_WORKFLOW.md)** for the full architecture. In short:
+
+- **Meta DAT SDK** streams video (~1fps) + mic from glasses
+- Voice intent → MCP `run_browser_task` → retailer search
+- Results → TTS → spoken to user on glasses
+- Same pattern as [VisionClaw](https://github.com/sseanliu/VisionClaw), applied to commerce
+
 ### Grant Application Materials
 
 | Type | Source | Description |

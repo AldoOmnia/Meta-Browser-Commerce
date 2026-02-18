@@ -49,6 +49,21 @@
 	<string>Meta Browser Commerce uses Bluetooth to pair with Meta AI Glasses for hands-free voice shopping.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Meta Browser Commerce uses the microphone to capture voice commands when paired with Meta AI Glasses.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Meta Browser Commerce uses the camera when glasses aren't paired — point at a product to search.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>metabrowsercommerce</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>com.omnia.MetaBrowserCommerce</string>
+		</dict>
+	</array>
 	<key>MWDAT</key>
 	<dict>
 		<key>Analytics</key>

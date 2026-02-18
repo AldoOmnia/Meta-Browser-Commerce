@@ -20,6 +20,25 @@ struct MetaBrowserCommerceApp: App {
         WindowGroup {
             RootView()
                 .environmentObject(appState)
+                .onOpenURL { url in
+                    handleURL(url)
+                }
+        }
+    }
+
+    private func handleURL(_ url: URL) {
+        guard url.scheme == "metabrowsercommerce",
+              url.host == "search",
+              let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let query = components.queryItems?.first(where: { $0.name == "q" })?.value
+        else { return }
+
+        Task { @MainActor in
+            let (searchURL, results) = SearchService.runSearch(query: query)
+            appState.lastVoiceQuery = query
+            appState.searchURL = searchURL
+            appState.searchResults = results
+            appState.isSearchSessionPresented = true
         }
     }
 
