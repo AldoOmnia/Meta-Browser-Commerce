@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Meta Browser Commerce — Grant Mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="mockup-container">
+    <!-- iPhone frame -->
+    <div class="device-frame">
+      <div class="device-notch"></div>
+      <div class="device-screen">
+        <main id="app" class="app">
+          <!-- Screen content injected by JS -->
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen navigation for prototype -->
+  <nav class="proto-nav">
+    <span class="proto-label">Grant mockup — tap to switch screens</span>
+    <div class="proto-buttons">
+      <button data-screen="pairing">Pairing</button>
+      <button data-screen="home" class="active">Home</button>
+      <button data-screen="search">Search</button>
+      <button data-screen="compare">Compare</button>
+      <button data-screen="cart">Cart</button>
+      <button data-screen="flow">Flow</button>
+    </div>
+  </nav>
+
+  <script src="screens.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta Browser Commerce — Voice Flow Diagram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0b;
+      color: #f5f5f7;
+      min-height: 100vh;
+      padding: 48px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 15px;
+      color: #a1a1a6;
+      margin-bottom: 40px;
+    }
+    .diagram {
+      max-width: 480px;
+      width: 100%;
+    }
+    .node {
+      background: #1e1e21;
+      border: 1px solid #2c2c2e;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .node-num {
+      width: 32px;
+      height: 32px;
+      background: #0866ff;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .node-content {}
+    .node-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .node-detail { font-size: 13px; color: #a1a1a6; }
+    .arrow {
+      text-align: center;
+      color: #3a3a3c;
+      font-size: 14px;
+      padding: 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Meta Browser Commerce — Voice Flow</h1>
+  <p class="subtitle">Hands-free product search & purchase on Meta AI Glasses</p>
+
+  <div class="diagram">
+    <div class="node">
+      <span class="node-num">1</span>
+      <div class="node-content">
+        <div class="node-title">User speaks on Meta AI Glasses</div>
+        <div class="node-detail">"Find running shoes under $80" / "Compare iPhone and Pixel"</div>
+      </div>
+    </div>
+    <div class="arrow">↓ Meta DAT (voice capture)</div>
+
+    <div class="node">
+      <span class="node-num">2</span>
+      <div class="node-content">
+        <div class="node-title">Mobile app parses intent</div>
+        <div class="node-detail">MCP client maps voice → run_browser_task / execute_website_action</div>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+
+    <div class="node">
+      <span class="node-num">3</span>
+      <div class="node-content">
+        <div class="node-title">Browser server executes on retailer sites</div>
+        <div class="node-detail">Omnia run_browser_task → browser-use → Nike, Amazon, Target, etc.</div>
+      </div>
+    </div>
+    <div class="arrow">↓ Web discovery (no retailer onboarding)</div>
+
+    <div class="node">
+      <span class="node-num">4</span>
+      <div class="node-content">
+        <div class="node-title">Structured results formatted</div>
+        <div class="node-detail">Products, prices, comparisons → ready for TTS</div>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+
+    <div class="node">
+      <span class="node-num">5</span>
+      <div class="node-content">
+        <div class="node-title">TTS → Meta DAT → Glasses</div>
+        <div class="node-detail">User hears results and prices over glasses (hands-free)</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

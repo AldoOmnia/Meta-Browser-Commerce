@@ -1,0 +1,351 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1000001272F0001 /* MetaBrowserCommerceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000001272F0001 /* MetaBrowserCommerceApp.swift */; };
+		A1000002272F0002 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000002272F0002 /* AppState.swift */; };
+		A1000003272F0003 /* ProductResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000003272F0003 /* ProductResult.swift */; };
+		A1000004272F0004 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000004272F0004 /* RootView.swift */; };
+		A1000005272F0005 /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000005272F0005 /* PairingView.swift */; };
+		A1000006272F0006 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000006272F0006 /* HomeView.swift */; };
+		A1000007272F0007 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000007272F0007 /* SearchResultsView.swift */; };
+		A1000008272F0008 /* CompareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000008272F0008 /* CompareView.swift */; };
+		A1000009272F0009 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000009272F0009 /* CartView.swift */; };
+		A100000A272F000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B100000A272F000A /* Assets.xcassets */; };
+		A100000B272F000B /* MetaDATService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000C272F000C /* MetaDATService.swift */; };
+		A100000C272F000C /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000D272F000D /* AppTheme.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B0000001272F0000 /* MetaBrowserCommerce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetaBrowserCommerce.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1000001272F0001 /* MetaBrowserCommerceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaBrowserCommerceApp.swift; sourceTree = "<group>"; };
+		B1000002272F0002 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		B1000003272F0003 /* ProductResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResult.swift; sourceTree = "<group>"; };
+		B1000004272F0004 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		B1000005272F0005 /* PairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
+		B1000006272F0006 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B1000007272F0007 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
+		B1000008272F0008 /* CompareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareView.swift; sourceTree = "<group>"; };
+		B1000009272F0009 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		B100000A272F000A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B100000B272F000B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B100000C272F000C /* MetaDATService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDATService.swift; sourceTree = "<group>"; };
+		B100000D272F000D /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C1000001272F0001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0000001272F0000 = {
+			isa = PBXGroup;
+			children = (
+				D0000002272F0000 /* MetaBrowserCommerce */,
+				D0000003272F0000 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0000002272F0000 /* MetaBrowserCommerce */ = {
+			isa = PBXGroup;
+			children = (
+				B1000001272F0001 /* MetaBrowserCommerceApp.swift */,
+				B1000002272F0002 /* AppState.swift */,
+				B1000004272F0004 /* RootView.swift */,
+				D0000004272F0000 /* Views */,
+				D0000006272F0000 /* Services */,
+				D0000007272F0000 /* Theme */,
+				D0000005272F0000 /* Models */,
+				B100000B272F000B /* Info.plist */,
+				B100000A272F000A /* Assets.xcassets */,
+			);
+			path = MetaBrowserCommerce;
+			sourceTree = "<group>";
+		};
+		D0000003272F0000 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B0000001272F0000 /* MetaBrowserCommerce.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0000004272F0000 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B1000005272F0005 /* PairingView.swift */,
+				B1000006272F0006 /* HomeView.swift */,
+				B1000007272F0007 /* SearchResultsView.swift */,
+				B1000008272F0008 /* CompareView.swift */,
+				B1000009272F0009 /* CartView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D0000005272F0000 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B1000003272F0003 /* ProductResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D0000006272F0000 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B100000C272F000C /* MetaDATService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D0000007272F0000 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				B100000D272F000D /* AppTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E0000001272F0000 /* MetaBrowserCommerce */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0000002272F0000 /* Build configuration list for PBXNativeTarget "MetaBrowserCommerce" */;
+			buildPhases = (
+				E1000001272F0000 /* Sources */,
+				C1000001272F0001 /* Frameworks */,
+				E2000001272F0000 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MetaBrowserCommerce;
+			productName = MetaBrowserCommerce;
+			productReference = B0000001272F0000 /* MetaBrowserCommerce.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F0000001272F0000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					E0000001272F0000 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = F0000002272F0000 /* Build configuration list for PBXProject "MetaBrowserCommerce" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D0000001272F0000;
+			productRefGroup = D0000003272F0000 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E0000001272F0000 /* MetaBrowserCommerce */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E2000001272F0000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A100000A272F000A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E1000001272F0000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000001272F0001 /* MetaBrowserCommerceApp.swift in Sources */,
+				A1000002272F0002 /* AppState.swift in Sources */,
+				A1000003272F0003 /* ProductResult.swift in Sources */,
+				A1000004272F0004 /* RootView.swift in Sources */,
+				A1000005272F0005 /* PairingView.swift in Sources */,
+				A1000006272F0006 /* HomeView.swift in Sources */,
+				A1000007272F0007 /* SearchResultsView.swift in Sources */,
+				A1000008272F0008 /* CompareView.swift in Sources */,
+				A1000009272F0009 /* CartView.swift in Sources */,
+				A100000B272F000B /* MetaDATService.swift in Sources */,
+				A100000C272F000C /* AppTheme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F3000001272F0000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F3000002272F0000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F4000001272F0000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MetaBrowserCommerce/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Meta Browser Commerce uses Bluetooth to pair with Meta AI Glasses for hands-free voice shopping.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Meta Browser Commerce uses the microphone for voice commands when paired with Meta AI Glasses.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.omnia.MetaBrowserCommerce;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F4000002272F0000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MetaBrowserCommerce/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Meta Browser Commerce uses Bluetooth to pair with Meta AI Glasses for hands-free voice shopping.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Meta Browser Commerce uses the microphone for voice commands when paired with Meta AI Glasses.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.omnia.MetaBrowserCommerce;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E0000002272F0000 /* Build configuration list for PBXNativeTarget "MetaBrowserCommerce" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4000001272F0000 /* Debug */,
+				F4000002272F0000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0000002272F0000 /* Build configuration list for PBXProject "MetaBrowserCommerce" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3000001272F0000 /* Debug */,
+				F3000002272F0000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+	};
+	rootObject = F0000001272F0000 /* Project object */;
+}
