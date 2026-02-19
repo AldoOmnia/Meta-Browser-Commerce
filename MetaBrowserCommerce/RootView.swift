@@ -12,6 +12,8 @@ struct RootView: View {
         Group {
             if !appState.hasSeenOmniaSplash {
                 OmniaSplashView()
+            } else if !appState.hasCompletedOnboarding {
+                OnboardingView()
             } else if !appState.hasCompletedPairingFlow {
                 PairingView()
             } else {

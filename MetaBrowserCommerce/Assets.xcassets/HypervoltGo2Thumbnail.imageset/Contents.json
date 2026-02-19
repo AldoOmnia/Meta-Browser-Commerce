@@ -1,0 +1,10 @@
+{
+  "images" : [
+    {
+      "filename" : "hypervolt-go-2-thumbnail.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    }
+  ],
+  "info" : { "author" : "xcode", "version" : 1 }
+}

@@ -9,6 +9,11 @@ import Foundation
 final class AppState: ObservableObject {
     /// Shown once at app launch
     @Published var hasSeenOmniaSplash = false
+    /// Completed 3-step onboarding before pairing
+    @Published var hasCompletedOnboarding = false
+
+    /// Allow agents to complete purchases hands-free when connected
+    @Published var allowAgentsToFinishCheckout = false
 
     // Meta DAT / Glasses connection
     @Published var isGlassesConnected = false

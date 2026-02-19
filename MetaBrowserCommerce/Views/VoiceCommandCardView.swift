@@ -12,20 +12,18 @@ struct VoiceCommandExample: Identifiable {
     let id: String
     let prompt: String
     let povIcon: String
+    var povImageName: String? = nil
 }
 
 struct VoiceCommandCardView: View {
     @Binding var text: String
     var onSendToGlasses: (String) -> Void
 
+    /// Only prompts with POV images — others moved to action cards
     let examples: [VoiceCommandExample] = [
-        VoiceCommandExample(id: "1", prompt: "Find running shoes under $80", povIcon: "figure.run"),
-        VoiceCommandExample(id: "2", prompt: "Compare these two items and find the best match online", povIcon: "rectangle.on.rectangle.angled"),
-        VoiceCommandExample(id: "3", prompt: "Find me a similar product and add it to Amazon cart", povIcon: "cart.badge.plus"),
-        VoiceCommandExample(id: "4", prompt: "Place pickup at closest La Colombe", povIcon: "cup.and.saucer.fill"),
-        VoiceCommandExample(id: "5", prompt: "Order from Starbucks", povIcon: "cup.and.saucer.fill"),
-        VoiceCommandExample(id: "6", prompt: "Add Nike Air Max to cart", povIcon: "tag.fill"),
-        VoiceCommandExample(id: "7", prompt: "Help me find options for a sofa that fits my living room", povIcon: "camera.metering.center.weighted"),
+        VoiceCommandExample(id: "1", prompt: "Find me a similar product on Amazon", povIcon: "cart.badge.plus", povImageName: "AddToCart"),
+        VoiceCommandExample(id: "2", prompt: "Help me find a sofa that fits my living room", povIcon: "camera.metering.center.weighted", povImageName: "Sofa"),
+        VoiceCommandExample(id: "3", prompt: "Help me compare these two items and find the best reviews online", povIcon: "rectangle.on.rectangle.angled", povImageName: "Compare"),
     ]
 
     @State private var currentIndex = 0
@@ -65,23 +63,24 @@ struct VoiceCommandCardView: View {
 
     private var voiceCommandRectangle: some View {
         VStack(spacing: 0) {
-            // Mock POV view for current command
-            ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(AppTheme.cardBackgroundElevated)
-                    .aspectRatio(16/9, contentMode: .fit)
-
-                Image("Glasses")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 36)
-                    .opacity(0.4)
-
-                Image(systemName: currentExample.povIcon)
-                    .font(.title2)
-                    .foregroundStyle(AppTheme.accent.opacity(0.6))
+            // POV view: large 1:1 image with "Glasses POV" overlay top-right
+            ZStack(alignment: .topTrailing) {
+                if let imgName = currentExample.povImageName {
+                    Image(imgName)
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fit)
+                        .frame(maxHeight: 240)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+                Text("Glasses POV")
+                    .font(.caption2)
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 6))
+                    .padding(8)
             }
-            .frame(height: 72)
+            .frame(height: 240)
 
             // Voice command text (cycling examples or custom)
             ZStack(alignment: .leading) {
@@ -104,7 +103,7 @@ struct VoiceCommandCardView: View {
             .padding(.horizontal, 20)
             .padding(.vertical, 16)
         }
-        .frame(minWidth: minWidthForLongestPrompt, maxWidth: .infinity, minHeight: 160)
+        .frame(minWidth: minWidthForLongestPrompt, maxWidth: .infinity, minHeight: 320)
         .background(AppTheme.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .onAppear {

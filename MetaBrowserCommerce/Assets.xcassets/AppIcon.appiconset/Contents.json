@@ -1,8 +1,10 @@
 {
   "images" : [
     {
+      "filename" : "icon_meta_commerce.png",
       "idiom" : "universal",
-      "platform" : "ios"
+      "platform" : "ios",
+      "size" : "1024x1024"
     }
   ],
   "info" : {

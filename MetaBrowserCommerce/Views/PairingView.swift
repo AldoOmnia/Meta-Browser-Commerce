@@ -31,13 +31,13 @@ struct PairingView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(AppTheme.textPrimary)
 
-                    // Pairing steps
+                    // Pairing steps (reduced width for better fit)
                     VStack(alignment: .leading, spacing: 12) {
                         pairingStep(number: 1, text: "Put your glasses in pairing mode")
                         pairingStep(number: 2, text: "Tap Pair Glasses below")
                         pairingStep(number: 3, text: "Follow the on-screen prompts")
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: 280, alignment: .leading)
                     .padding(18)
                     .background(AppTheme.cardBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -83,15 +83,15 @@ struct PairingView: View {
                 .padding(.horizontal, 24)
                 .padding(.bottom, 16)
 
-                // Powered by Omnia (small, at very bottom)
-                HStack(spacing: 6) {
+                // Powered by (above logo, like splash)
+                VStack(spacing: 6) {
+                    Text("Powered by")
+                        .font(.caption2)
+                        .foregroundStyle(AppTheme.textTertiary)
                     Image("OmniaLogo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 18)
-                    Text("Powered by Omnia")
-                        .font(.caption2)
-                        .foregroundStyle(AppTheme.textTertiary)
                 }
                 .padding(.bottom, 24)
             }

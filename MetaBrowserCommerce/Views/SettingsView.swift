@@ -12,6 +12,7 @@ struct PlatformConnection: Identifiable {
     let name: String
     let icon: String
     let logoDomain: String?
+    let logoAssetName: String?
     var isConnected: Bool
 
     var logoURL: URL? {
@@ -24,13 +25,13 @@ struct SettingsView: View {
     @EnvironmentObject var appState: AppState
     @Environment(\.dismiss) private var dismiss
     @State private var platforms: [PlatformConnection] = [
-        PlatformConnection(id: "amazon", name: "Amazon", icon: "cart.fill", logoDomain: "amazon.com", isConnected: false),
-        PlatformConnection(id: "nike", name: "Nike", icon: "sportscourt.fill", logoDomain: "nike.com", isConnected: false),
-        PlatformConnection(id: "target", name: "Target", icon: "scope", logoDomain: "target.com", isConnected: false),
-        PlatformConnection(id: "walmart", name: "Walmart", icon: "bag.fill", logoDomain: "walmart.com", isConnected: false),
-        PlatformConnection(id: "bestbuy", name: "Best Buy", icon: "tv.fill", logoDomain: "bestbuy.com", isConnected: false),
-        PlatformConnection(id: "lacolombe", name: "La Colombe", icon: "cup.and.saucer.fill", logoDomain: "lacolombe.com", isConnected: false),
-        PlatformConnection(id: "starbucks", name: "Starbucks", icon: "cup.and.saucer.fill", logoDomain: "starbucks.com", isConnected: false),
+        PlatformConnection(id: "amazon", name: "Amazon", icon: "cart.fill", logoDomain: "amazon.com", logoAssetName: "AmazonLogo", isConnected: false),
+        PlatformConnection(id: "nike", name: "Nike", icon: "sportscourt.fill", logoDomain: "nike.com", logoAssetName: "NikeLogo", isConnected: false),
+        PlatformConnection(id: "target", name: "Target", icon: "scope", logoDomain: "target.com", logoAssetName: "TargetLogo", isConnected: false),
+        PlatformConnection(id: "walmart", name: "Walmart", icon: "bag.fill", logoDomain: "walmart.com", logoAssetName: "WalmartLogo", isConnected: false),
+        PlatformConnection(id: "bestbuy", name: "Best Buy", icon: "tv.fill", logoDomain: "bestbuy.com", logoAssetName: "BestBuyLogo", isConnected: false),
+        PlatformConnection(id: "lacolombe", name: "La Colombe", icon: "cup.and.saucer.fill", logoDomain: "lacolombe.com", logoAssetName: "LaColombeLogo", isConnected: false),
+        PlatformConnection(id: "starbucks", name: "Starbucks", icon: "cup.and.saucer.fill", logoDomain: "starbucks.com", logoAssetName: "StarbucksLogo", isConnected: false),
     ]
     @State private var platformToLogin: PlatformConnection?
 
@@ -42,6 +43,29 @@ struct SettingsView: View {
                         .font(.callout)
                         .foregroundStyle(AppTheme.textSecondary)
                         .padding(.bottom, 8)
+
+                    // Allow agents to finish checkout toggle
+                    HStack(spacing: 16) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.title2)
+                            .foregroundStyle(AppTheme.accent)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Allow agents to finish checkout")
+                                .font(.body)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(AppTheme.textPrimary)
+                            Text("Agents can complete purchases hands-free when connected to platforms")
+                                .font(.caption)
+                                .foregroundStyle(AppTheme.textSecondary)
+                        }
+                        Spacer()
+                        Toggle("", isOn: $appState.allowAgentsToFinishCheckout)
+                            .labelsHidden()
+                            .tint(AppTheme.accent)
+                    }
+                    .padding(16)
+                    .background(AppTheme.cardBackground)
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
 
                     ForEach($platforms) { $platform in
                         HStack(spacing: 16) {
@@ -127,7 +151,11 @@ struct PlatformLogoView: View {
 
     var body: some View {
         Group {
-            if let url = platform.logoURL {
+            if let assetName = platform.logoAssetName {
+                Image(assetName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } else if let url = platform.logoURL {
                 AsyncImage(url: url) { phase in
                     switch phase {
                     case .success(let image):

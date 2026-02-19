@@ -126,7 +126,7 @@ struct HomeView: View {
         }
     }
 
-    /// Actions guide with pictures — under search bar
+    /// Actions guide — all actions, one prompt per card
     private var actionsGuideSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("What you can do")
@@ -134,50 +134,47 @@ struct HomeView: View {
                 .fontWeight(.semibold)
                 .foregroundStyle(AppTheme.textSecondary)
 
-            // Action 1: Camera + product search / compare
             ActionGuideCard(
                 icon: "camera.viewfinder",
                 title: "Camera & product search",
-                examples: [
-                    "Find me a similar product and add it to Amazon cart",
-                    "Compare these two items and find the best match online"
-                ],
+                examples: ["Find me a similar product and add it to Amazon cart"],
                 footnote: "System picks the best platform available."
             ) {
                 showCamera = true
             }
 
-            // Action 2: Agent + camera — room-aware shopping
             ActionGuideCard(
                 icon: "camera.metering.center.weighted",
                 title: "Agent + camera",
-                examples: [
-                    "Help me find options for a sofa that fits my living room"
-                ],
+                examples: ["Help me find options for a sofa that fits my living room"],
                 footnote: "Point your camera at the space — agent analyzes and finds fits."
             ) {
                 cameraPresetQuery = "Help me find options for a sofa that fits my living room"
                 showCamera = true
             }
 
-            // Action 4: Compare
             ActionGuideCard(
                 icon: "rectangle.on.rectangle.angled",
                 title: "Compare products",
-                examples: ["Compare iPhone and Pixel", "Find cheaper alternative"],
+                examples: ["Compare these two items and find the best reviews online"],
                 footnote: nil
             ) {
-                runSearch("Compare iPhone and Pixel")
+                runSearch("Compare these two items and find the best reviews online")
             }
 
-            // Action 5: Dining / pickup
+            ActionGuideCard(
+                icon: "figure.run",
+                title: "Voice search",
+                examples: ["Find running shoes under $80"],
+                footnote: nil
+            ) {
+                runSearch("Find running shoes under $80")
+            }
+
             ActionGuideCard(
                 icon: "cup.and.saucer.fill",
                 title: "Dining & pickup orders",
-                examples: [
-                    "Place pickup at closest La Colombe",
-                    "Order from Starbucks"
-                ],
+                examples: ["Place pickup at closest La Colombe"],
                 footnote: "Tap to try La Colombe or Starbucks"
             ) {
                 runDining("La Colombe")
