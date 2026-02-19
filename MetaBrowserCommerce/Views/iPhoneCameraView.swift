@@ -1,8 +1,9 @@
 //
 //  iPhoneCameraView.swift
-//  Meta Browser Commerce
 //
-//  Fallback camera when glasses aren't paired — like VisionClaw "Phone mode"
+//  Camera view when Send to Glasses is clicked.
+//  Shows live feed + voice commands in chat mode (from bottom).
+//  Cancel button only — no glasses icons.
 //
 
 import SwiftUI
@@ -10,53 +11,64 @@ import AVFoundation
 
 struct iPhoneCameraView: View {
     @Environment(\.dismiss) private var dismiss
-    var presetQuery: String?
-    var onSearch: (String) -> Void
+    var initialCommand: String?
+    var commands: [String]
+    var onDismiss: (() -> Void)?
+    var onSearch: ((String) -> Void)?
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                CameraPreviewView()
-                    .ignoresSafeArea()
+        ZStack(alignment: .bottom) {
+            CameraPreviewView()
+                .ignoresSafeArea()
 
-                VStack {
-                    Spacer()
-                    HStack(spacing: 20) {
-                        Button("Cancel") {
-                            dismiss()
-                        }
-                        .foregroundStyle(.white)
-                        .font(.callout)
-
-                        Button {
-                            onSearch(presetQuery ?? "Search what I see")
-                            dismiss()
-                        } label: {
-                            Image("WhiteGlasses")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 64, height: 64)
-                                .padding(12)
-                                .shadow(radius: 4)
-                        }
-
-                        Color.clear
-                            .frame(width: 60)
+            // Top: LIVE + Glasses POV (restored)
+            VStack {
+                HStack {
+                    HStack(spacing: 6) {
+                        Circle()
+                            .fill(Color.red)
+                            .frame(width: 8, height: 8)
+                        Text("LIVE")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.black.opacity(0.5))
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
                     }
-                    .padding(.bottom, 48)
+                    .padding(.leading, 20)
+                    .padding(.top, 60)
+
+                    Spacer()
+
+                    Text("Glasses POV")
+                        .font(.caption2)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color.black.opacity(0.6))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .padding(.trailing, 20)
+                        .padding(.top, 60)
                 }
+                Spacer()
             }
-            .background(Color.black)
-            .navigationTitle("iPhone Camera")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarColorScheme(.dark, for: .navigationBar)
+
+            // Bottom: chat + Cancel (shared with Glasses POV)
+            POVBottomChrome(commands: commands) {
+                onDismiss?()
+                dismiss()
+            }
         }
+        .background(Color.black)
     }
 }
 
+/// Camera preview with proper layout for AVCaptureVideoPreviewLayer
 struct CameraPreviewView: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIView {
-        let view = UIView(frame: .zero)
+    func makeUIView(context: Context) -> CameraPreviewUIView {
+        let view = CameraPreviewUIView()
         view.backgroundColor = .black
 
         let session = AVCaptureSession()
@@ -70,10 +82,9 @@ struct CameraPreviewView: UIViewRepresentable {
         session.addInput(input)
 
         let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-        previewLayer.frame = view.bounds
         previewLayer.videoGravity = .resizeAspectFill
+        view.previewLayer = previewLayer
         view.layer.addSublayer(previewLayer)
-        context.coordinator.previewLayer = previewLayer
 
         context.coordinator.session = session
         DispatchQueue.global(qos: .userInitiated).async {
@@ -83,13 +94,22 @@ struct CameraPreviewView: UIViewRepresentable {
         return view
     }
 
-    func updateUIView(_ uiView: UIView, context: Context) {
-        context.coordinator.previewLayer?.frame = uiView.bounds
+    func updateUIView(_ uiView: CameraPreviewUIView, context: Context) {
+        uiView.previewLayer?.frame = uiView.bounds
     }
 
     func makeCoordinator() -> Coordinator { Coordinator() }
     class Coordinator {
         var session: AVCaptureSession?
-        var previewLayer: AVCaptureVideoPreviewLayer?
+    }
+}
+
+/// UIView that sizes preview layer in layoutSubviews (fixes camera not showing)
+final class CameraPreviewUIView: UIView {
+    var previewLayer: AVCaptureVideoPreviewLayer?
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        previewLayer?.frame = bounds
     }
 }

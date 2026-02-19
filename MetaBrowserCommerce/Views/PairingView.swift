@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PairingView: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var wearablesBridge: WearablesBridge
 
     var body: some View {
         ZStack {
@@ -100,12 +101,21 @@ struct PairingView: View {
 
     private func pairGlasses() {
         appState.isPairingInProgress = true
-        // TODO: Integrate Meta Wearables DAT SDK
-        // MetaWearablesSDK.shared.startPairing { result in ... }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        Task { @MainActor in
+            do {
+                try await wearablesBridge.startRegistration()
+                // Registration started — Meta AI app will handle Connect flow.
+                // WearablesBridge observes devicesStream; when device connects,
+                // isGlassesConnected updates automatically.
+                appState.hasCompletedPairingFlow = true
+            } catch {
+                appState.isPairingInProgress = false
+                // Registration failed — user may need to open Meta AI app
+                #if DEBUG
+                print("[PairingView] Registration error: \(error)")
+                #endif
+            }
             appState.isPairingInProgress = false
-            appState.isGlassesConnected = true
-            appState.hasCompletedPairingFlow = true
         }
     }
 

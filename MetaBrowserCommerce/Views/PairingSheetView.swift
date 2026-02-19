@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PairingSheetView: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var wearablesBridge: WearablesBridge
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -81,11 +82,17 @@ struct PairingSheetView: View {
 
     private func pairGlasses() {
         appState.isPairingInProgress = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        Task { @MainActor in
+            do {
+                try await wearablesBridge.startRegistration()
+                appState.showPairingSheet = false
+                dismiss()
+            } catch {
+                #if DEBUG
+                print("[PairingSheetView] Registration error: \(error)")
+                #endif
+            }
             appState.isPairingInProgress = false
-            appState.isGlassesConnected = true
-            appState.showPairingSheet = false
-            dismiss()
         }
     }
 }

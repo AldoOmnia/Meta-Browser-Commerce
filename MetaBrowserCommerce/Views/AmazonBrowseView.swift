@@ -23,6 +23,7 @@ struct PlatformBrowseView: View {
         case "nike": return "Nike"
         case "lacolombe": return "La Colombe"
         case "starbucks": return "Starbucks"
+        case "ubereats": return "Uber Eats"
         default: return "Browse"
         }
     }
@@ -44,6 +45,11 @@ struct PlatformBrowseView: View {
             return URL(string: "https://www.lacolombe.com")!
         case "starbucks":
             return URL(string: "https://www.starbucks.com/store-locator")!
+        case "ubereats":
+            if !term.isEmpty, let encoded = term.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                return URL(string: "https://www.ubereats.com/search?q=\(encoded)")!
+            }
+            return URL(string: "https://www.ubereats.com")!
         default:
             return URL(string: "https://www.amazon.com")!
         }

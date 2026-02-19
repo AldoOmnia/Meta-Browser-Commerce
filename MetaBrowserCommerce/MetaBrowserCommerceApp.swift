@@ -11,6 +11,7 @@ import SwiftUI
 @main
 struct MetaBrowserCommerceApp: App {
     @StateObject private var appState = AppState()
+    @StateObject private var wearablesBridge = WearablesBridge.shared
 
     init() {
         configureAppearance()
@@ -20,6 +21,10 @@ struct MetaBrowserCommerceApp: App {
         WindowGroup {
             RootView()
                 .environmentObject(appState)
+                .environmentObject(wearablesBridge)
+                .onAppear {
+                    wearablesBridge.bind(to: appState)
+                }
                 .onOpenURL { url in
                     handleURL(url)
                 }

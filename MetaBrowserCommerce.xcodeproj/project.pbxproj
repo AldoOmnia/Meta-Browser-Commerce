@@ -20,6 +20,7 @@
 		A1000008272F0008 /* CompareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000008272F0008 /* CompareView.swift */; };
 		A1000009272F0009 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000009272F0009 /* CartView.swift */; };
 		A100000A272F000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B100000A272F000A /* Assets.xcassets */; };
+		A100001A342F0029 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B100001B342F0028 /* PrivacyInfo.xcprivacy */; };
 		A100000B272F000B /* MetaDATService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000C272F000C /* MetaDATService.swift */; };
 		A100000C272F000C /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000D272F000D /* AppTheme.swift */; };
 		A100000D272F000D /* SearchSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000E272F000E /* SearchSessionView.swift */; };
@@ -36,6 +37,9 @@
 		A1000018282F0022 /* OmniaSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000018292F0023 /* OmniaSplashView.swift */; };
 		A1000018302F0024 /* VoiceCommandCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000018312F0025 /* VoiceCommandCardView.swift */; };
 		A1000019322F0026 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000019332F0027 /* OnboardingView.swift */; };
+		A100001C452F0030 /* WearablesBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100001D452F0031 /* WearablesBridge.swift */; };
+		A100001E452F0032 /* GlassesStreamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100001F452F0033 /* GlassesStreamViewModel.swift */; };
+		A1000020452F0034 /* GlassesPOVStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000021452F0035 /* GlassesPOVStreamView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +71,10 @@
 		B1000018292F0023 /* OmniaSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmniaSplashView.swift; sourceTree = "<group>"; };
 		B1000018312F0025 /* VoiceCommandCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCommandCardView.swift; sourceTree = "<group>"; };
 		B1000019332F0027 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		B100001B342F0028 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		B100001D452F0031 /* WearablesBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WearablesBridge.swift; sourceTree = "<group>"; };
+		B100001F452F0033 /* GlassesStreamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassesStreamViewModel.swift; sourceTree = "<group>"; };
+		B1000021452F0035 /* GlassesPOVStreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassesPOVStreamView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,7 @@
 				D0000007272F0000 /* Theme */,
 				D0000005272F0000 /* Models */,
 				B100000B272F000B /* Info.plist */,
+				B100001B342F0028 /* PrivacyInfo.xcprivacy */,
 				B100000A272F000A /* Assets.xcassets */,
 			);
 			path = MetaBrowserCommerce;
@@ -135,6 +144,7 @@
 				B1000018292F0023 /* OmniaSplashView.swift */,
 				B1000018312F0025 /* VoiceCommandCardView.swift */,
 				B1000019332F0027 /* OnboardingView.swift */,
+				B1000021452F0035 /* GlassesPOVStreamView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,6 +163,8 @@
 				B100000C272F000C /* MetaDATService.swift */,
 				B1000010272F0011 /* SearchService.swift */,
 				B1000016272F0017 /* PlatformConnectionStore.swift */,
+				B100001D452F0031 /* WearablesBridge.swift */,
+				B100001F452F0033 /* GlassesStreamViewModel.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -227,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A100000A272F000A /* Assets.xcassets in Resources */,
+				A100001A342F0029 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +275,9 @@
 				A1000018282F0022 /* OmniaSplashView.swift in Sources */,
 				A1000018302F0024 /* VoiceCommandCardView.swift in Sources */,
 				A1000019322F0026 /* OnboardingView.swift in Sources */,
+				A100001C452F0030 /* WearablesBridge.swift in Sources */,
+				A100001E452F0032 /* GlassesStreamViewModel.swift in Sources */,
+				A1000020452F0034 /* GlassesPOVStreamView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

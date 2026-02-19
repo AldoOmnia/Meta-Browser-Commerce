@@ -2,7 +2,10 @@
 //  SearchService.swift
 //  Meta Browser Commerce
 //
-//  Demo search: multi-platform results for E2E flow testing
+//  Demo search: multi-platform results for E2E flow testing.
+//  Browser-use integration: Connect Amazon in Settings, then run a voice search
+//  (e.g. "Find running shoes") to open Nike/Amazon URLs. For full automation,
+//  wire up Omnia MCP + browser-use backend to perform add-to-cart etc.
 //
 
 import Foundation
@@ -56,21 +59,35 @@ enum SearchService {
         return (url, results)
     }
 
-    /// Dining: La Colombe pickup
+    /// Dining & delivery: La Colombe, Starbucks, Uber Eats
     static func runDiningOrder(venue: String) -> (URL, [ProductResult]) {
-        let (url, _): (URL, [ProductResult])
+        let (url, items): (URL, [ProductResult])
         switch venue.lowercased() {
         case "la colombe", "lacolombe":
             url = URL(string: "https://www.lacolombe.com/pages/store-locator")!
+            items = [
+                ProductResult(title: "Large Oat Latte", description: "Pickup at nearest store", price: 6.50, source: "La Colombe", imageURL: nil),
+                ProductResult(title: "Cortado", description: "Pickup at nearest store", price: 4.75, source: "La Colombe", imageURL: nil),
+            ]
         case "starbucks":
             url = URL(string: "https://www.starbucks.com/store-locator")!
+            items = [
+                ProductResult(title: "Venti Latte", description: "Pickup at nearest store", price: 5.95, source: "Starbucks", imageURL: nil),
+                ProductResult(title: "Cold Brew", description: "Pickup at nearest store", price: 4.75, source: "Starbucks", imageURL: nil),
+            ]
+        case "uber eats", "ubereats":
+            url = URL(string: "https://www.ubereats.com")!
+            items = [
+                ProductResult(title: "Restaurant delivery", description: "Order from local restaurants", price: 0, source: "Uber Eats", imageURL: nil),
+                ProductResult(title: "Groceries", description: "Same-day grocery delivery", price: 0, source: "Uber Eats", imageURL: nil),
+            ]
         default:
             url = URL(string: "https://www.lacolombe.com/pages/store-locator")!
+            items = [
+                ProductResult(title: "Large Oat Latte", description: "Pickup at nearest store", price: 6.50, source: venue, imageURL: nil),
+                ProductResult(title: "Cortado", description: "Pickup at nearest store", price: 4.75, source: venue, imageURL: nil),
+            ]
         }
-        let items = [
-            ProductResult(title: "Large Oat Latte", description: "Pickup at nearest store", price: 6.50, source: venue, imageURL: nil),
-            ProductResult(title: "Cortado", description: "Pickup at nearest store", price: 4.75, source: venue, imageURL: nil),
-        ]
         return (url, items)
     }
 }

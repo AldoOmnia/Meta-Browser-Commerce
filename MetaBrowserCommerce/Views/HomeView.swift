@@ -10,6 +10,7 @@ struct HomeView: View {
     @State private var testSearchQuery = ""
     @State private var showCamera = false
     @State private var cameraPresetQuery: String?
+    @State private var cameraCommand: String?
     @State private var showPairing = false
 
     var body: some View {
@@ -48,8 +49,22 @@ struct HomeView: View {
             .sheet(isPresented: $appState.showPairingSheet) { PairingSheetView() }
             .sheet(isPresented: $appState.showSettingsSheet) { SettingsView() }
             .fullScreenCover(isPresented: $showCamera) {
-                iPhoneCameraView(presetQuery: cameraPresetQuery) { query in
-                    runSearch(query)
+                Group {
+                    // Glasses paired → stream from glasses; otherwise → iPhone camera
+                    if appState.isGlassesConnected {
+                        GlassesPOVStreamView(
+                            initialCommand: cameraCommand ?? cameraPresetQuery,
+                            commands: [cameraCommand ?? cameraPresetQuery ?? "Search what I see"].compactMap { $0 }
+                        )
+                    } else {
+                        iPhoneCameraView(
+                            initialCommand: cameraCommand ?? cameraPresetQuery,
+                            commands: [cameraCommand ?? cameraPresetQuery ?? "Search what I see"].compactMap { $0 }
+                        )
+                    }
+                }
+                .onDisappear {
+                    cameraCommand = nil
                     cameraPresetQuery = nil
                 }
             }
@@ -117,7 +132,8 @@ struct HomeView: View {
                 .foregroundStyle(AppTheme.textSecondary)
 
             VoiceCommandCardView(text: $testSearchQuery) { command in
-                runSearch(command)
+                cameraCommand = command
+                showCamera = true
             }
 
             Text("Tap to type your own, or send an example to your glasses")
@@ -140,6 +156,8 @@ struct HomeView: View {
                 examples: ["Find me a similar product and add it to Amazon cart"],
                 footnote: "System picks the best platform available."
             ) {
+                cameraPresetQuery = "Find me a similar product and add it to Amazon cart"
+                cameraCommand = nil
                 showCamera = true
             }
 
@@ -150,6 +168,7 @@ struct HomeView: View {
                 footnote: "Point your camera at the space — agent analyzes and finds fits."
             ) {
                 cameraPresetQuery = "Help me find options for a sofa that fits my living room"
+                cameraCommand = nil
                 showCamera = true
             }
 
@@ -173,9 +192,9 @@ struct HomeView: View {
 
             ActionGuideCard(
                 icon: "cup.and.saucer.fill",
-                title: "Dining & pickup orders",
-                examples: ["Place pickup at closest La Colombe"],
-                footnote: "Tap to try La Colombe or Starbucks"
+                title: "Dining & delivery",
+                examples: ["Place pickup at La Colombe", "Order from Uber Eats"],
+                footnote: "Tap to try La Colombe, Starbucks, or Uber Eats"
             ) {
                 runDining("La Colombe")
             }
@@ -192,6 +211,12 @@ struct HomeView: View {
                         .background(AppTheme.accentBackground).foregroundStyle(AppTheme.accent)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
+                Button { runDining("Uber Eats") } label: {
+                    Text("Uber Eats").font(.callout).fontWeight(.medium)
+                        .frame(maxWidth: .infinity).padding(.vertical, 10)
+                        .background(AppTheme.accentBackground).foregroundStyle(AppTheme.accent)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
             }
         }
     }
@@ -203,37 +228,49 @@ struct HomeView: View {
                 .fontWeight(.semibold)
                 .foregroundStyle(AppTheme.textSecondary)
 
-            HStack(spacing: 16) {
-                Image(systemName: "shippingbox")
-                    .font(.title3)
-                    .foregroundStyle(AppTheme.accent)
-                    .frame(width: 40, height: 40)
-                    .background(AppTheme.accentBackground)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                Text("Running shoes — Nike + Amazon")
-                    .font(.body)
-                    .foregroundStyle(AppTheme.textPrimary)
+            if appState.recentVoiceSessions.isEmpty {
+                // Placeholder when no sessions yet
+                HStack(spacing: 16) {
+                    Image(systemName: "waveform")
+                        .font(.title3)
+                        .foregroundStyle(AppTheme.accent)
+                        .frame(width: 40, height: 40)
+                        .background(AppTheme.accentBackground)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                    Text("Voice commands will appear here")
+                        .font(.body)
+                        .foregroundStyle(AppTheme.textSecondary)
+                }
+                .padding(16)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(AppTheme.cardBackground)
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+            } else {
+                ForEach(appState.recentVoiceSessions.prefix(5)) { session in
+                    HStack(spacing: 16) {
+                        Image(systemName: "waveform.circle.fill")
+                            .font(.title3)
+                            .foregroundStyle(AppTheme.accent)
+                            .frame(width: 40, height: 40)
+                            .background(AppTheme.accentBackground)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(session.summary)
+                                .font(.body)
+                                .foregroundStyle(AppTheme.textPrimary)
+                                .lineLimit(2)
+                            Text(session.date, style: .relative)
+                                .font(.caption2)
+                                .foregroundStyle(AppTheme.textTertiary)
+                        }
+                        Spacer()
+                    }
+                    .padding(16)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(AppTheme.cardBackground)
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
             }
-            .padding(16)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(AppTheme.cardBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 14))
-
-            HStack(spacing: 16) {
-                Image(systemName: "cup.and.saucer.fill")
-                    .font(.title3)
-                    .foregroundStyle(AppTheme.accent)
-                    .frame(width: 40, height: 40)
-                    .background(AppTheme.accentBackground)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                Text("La Colombe — pickup ready")
-                    .font(.body)
-                    .foregroundStyle(AppTheme.textPrimary)
-            }
-            .padding(16)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(AppTheme.cardBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 14))
         }
     }
 

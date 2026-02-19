@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="MetaBrowserCommerce/Assets.xcassets/AppIcon.appiconset/icon_meta_commerce.png" alt="Meta Browser Commerce" width="128" />
+</p>
+
 # Meta Browser Commerce
 
 **Hands-free product search & purchase on Meta AI Glasses**

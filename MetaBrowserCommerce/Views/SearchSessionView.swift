@@ -37,6 +37,11 @@ struct SearchSessionView: View {
                     platformToBrowse = "starbucks"
                 }
             }
+            if PlatformConnectionStore.isConnected(platformId: "ubereats") {
+                platformBrowseCard(platform: "Uber Eats", color: Color(red: 0.11, green: 0.85, blue: 0.36)) {
+                    platformToBrowse = "ubereats"
+                }
+            }
         }
     }
 

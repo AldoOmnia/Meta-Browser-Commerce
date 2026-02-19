@@ -44,6 +44,9 @@ final class AppState: ObservableObject {
     /// Previous agent actions: POV, prompt, browser result
     @Published var agentActions: [AgentAction] = []
 
+    /// Recent voice command sessions — summarized for homepage
+    @Published var recentVoiceSessions: [RecentVoiceSession] = []
+
     // Navigation
     @Published var selectedTab: AppTab = .home
 }
@@ -62,6 +65,25 @@ struct PreviousOrder: Identifiable {
     let summary: String
     let date: Date
     let status: String
+}
+
+struct RecentVoiceSession: Identifiable {
+    let id = UUID()
+    let commands: [String]
+    let summary: String
+    let date: Date
+
+    static func from(commands: [String]) -> RecentVoiceSession {
+        let summary: String
+        if commands.isEmpty {
+            summary = "No commands"
+        } else if commands.count == 1 {
+            summary = commands[0]
+        } else {
+            summary = "\(commands.count) commands: \(commands.prefix(2).joined(separator: "; "))" + (commands.count > 2 ? "…" : "")
+        }
+        return RecentVoiceSession(commands: commands, summary: summary, date: Date())
+    }
 }
 
 enum AppTab: String, CaseIterable {

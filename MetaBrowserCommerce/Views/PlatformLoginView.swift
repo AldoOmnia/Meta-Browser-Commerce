@@ -31,6 +31,8 @@ struct PlatformLoginView: View {
             return URL(string: "https://www.lacolombe.com/account/login")!
         case "starbucks":
             return URL(string: "https://www.starbucks.com/account/signin")!
+        case "ubereats":
+            return URL(string: "https://www.ubereats.com/login")!
         default:
             return URL(string: "https://www.amazon.com/ap/signin")!
         }
@@ -126,6 +128,10 @@ struct PlatformLoginWebView: UIViewRepresentable {
                 }
             case "nike":
                 if url.contains("nike.com") && !url.contains("/login") {
+                    onLoginDetected()
+                }
+            case "ubereats":
+                if url.contains("ubereats.com") && !url.contains("/login") {
                     onLoginDetected()
                 }
             default:

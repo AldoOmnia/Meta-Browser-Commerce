@@ -32,6 +32,7 @@ struct SettingsView: View {
         PlatformConnection(id: "bestbuy", name: "Best Buy", icon: "tv.fill", logoDomain: "bestbuy.com", logoAssetName: "BestBuyLogo", isConnected: false),
         PlatformConnection(id: "lacolombe", name: "La Colombe", icon: "cup.and.saucer.fill", logoDomain: "lacolombe.com", logoAssetName: "LaColombeLogo", isConnected: false),
         PlatformConnection(id: "starbucks", name: "Starbucks", icon: "cup.and.saucer.fill", logoDomain: "starbucks.com", logoAssetName: "StarbucksLogo", isConnected: false),
+        PlatformConnection(id: "ubereats", name: "Uber Eats", icon: "bag.fill", logoDomain: "ubereats.com", logoAssetName: "UberEatsLogo", isConnected: false),
     ]
     @State private var platformToLogin: PlatformConnection?
 

@@ -25,6 +25,7 @@ struct OnboardingView: View {
                     step3View.tag(2)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
+                .animation(nil, value: currentStep)
 
                 // Page indicator + buttons
                 VStack(spacing: 24) {
@@ -130,6 +131,7 @@ struct OnboardingView: View {
                     platformIconView(assetName: "BestBuyLogo", name: "Best Buy")
                     platformIconView(assetName: "NikeLogo", name: "Nike")
                     platformIconView(assetName: "LaColombeLogo", name: "La Colombe")
+                    platformIconView(assetName: "UberEatsLogo", name: "Uber Eats")
                 }
                 .padding(.vertical, 8)
             }
@@ -200,8 +202,8 @@ struct OnboardingView: View {
                     .padding(.vertical, 8)
                     .background(AppTheme.cardBackground)
 
-                    OnboardingBrowserSection()
-                        .frame(height: 300)
+                    OnboardingBrowserSection(onAddToCartResult: { _ in })
+                        .frame(height: 320)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
@@ -274,50 +276,161 @@ struct OnboardingView: View {
     }
 }
 
-/// Browser section: real Amazon WebView when possible, mock fallback with Hypervolt
+/// Real Amazon WebView — loads product page and injects JS to add to cart (browser-use test)
 private struct OnboardingBrowserSection: View {
-    private static let amazonHypervoltURL = URL(string: "https://www.amazon.com/dp/B09W737GFR")!
+    @State private var status: AgentStatus = .loading
+    var onAddToCartResult: (Bool) -> Void
+
+    private enum AgentStatus {
+        case loading
+        case loaded
+        case adding
+        case success
+        case failed
+    }
+
+    private static let amazonURL = URL(string: "https://www.amazon.com/dp/B09W737GFR")!
 
     var body: some View {
         VStack(spacing: 0) {
-            // Agent active bar
             HStack(spacing: 8) {
                 Image("AmazonLogo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 22)
                 Spacer()
-                Circle().fill(AppTheme.success).frame(width: 6, height: 6)
-                Text("Agent adding to cart...")
-                    .font(.caption2)
-                    .foregroundStyle(AppTheme.textSecondary)
+                HStack(spacing: 6) {
+                    Circle()
+                        .fill(status == .success ? AppTheme.success : (status == .failed ? Color.orange : AppTheme.accent))
+                        .frame(width: 6, height: 6)
+                    Text(statusText)
+                        .font(.caption2)
+                        .foregroundStyle(status == .success ? AppTheme.success : (status == .failed ? Color.orange : AppTheme.textSecondary))
+                }
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
             .background(AppTheme.cardBackground)
 
-            // Actual Amazon product page (Hypervolt Go 2)
-            OnboardingAmazonWebView(url: Self.amazonHypervoltURL)
+            ZStack {
+                OnboardingAmazonWebView(
+                    url: Self.amazonURL,
+                    onLoaded: { status = .loaded },
+                    onAddToCartAttempt: { status = .adding },
+                    onAddToCartResult: { success in
+                        status = success ? .success : .failed
+                        onAddToCartResult(success)
+                    }
+                )
+                if status == .loading {
+                    VStack(spacing: 12) {
+                        ProgressView()
+                            .scaleEffect(1.2)
+                            .tint(AppTheme.accent)
+                        Text("Loading Amazon...")
+                            .font(.caption)
+                            .foregroundStyle(AppTheme.textSecondary)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.white)
+                }
+            }
+        }
+    }
+
+    private var statusText: String {
+        switch status {
+        case .loading: return "Loading..."
+        case .loaded: return "Agent will add to cart..."
+        case .adding: return "Adding to cart..."
+        case .success: return "Added to cart"
+        case .failed: return "Add to cart (sign in may be needed)"
         }
     }
 }
 
-/// WKWebView loading Amazon product page
+/// WKWebView loading Amazon + JS injection to click Add to Cart
 private struct OnboardingAmazonWebView: UIViewRepresentable {
     let url: URL
+    let onLoaded: () -> Void
+    let onAddToCartAttempt: () -> Void
+    let onAddToCartResult: (Bool) -> Void
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(onLoaded: onLoaded, onAddToCartAttempt: onAddToCartAttempt, onAddToCartResult: onAddToCartResult)
+    }
 
     func makeUIView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration()
         config.websiteDataStore = .nonPersistent()
         config.processPool = WKProcessPool()
+        config.defaultWebpagePreferences.allowsContentJavaScript = true
+        config.applicationNameForUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15"
+
         let webView = WKWebView(frame: .zero, configuration: config)
+        webView.navigationDelegate = context.coordinator
         webView.scrollView.isScrollEnabled = true
-        webView.scrollView.bounces = false
-        webView.isOpaque = false
+        webView.isOpaque = true
         webView.backgroundColor = .white
         webView.load(URLRequest(url: url))
         return webView
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {}
+
+    class Coordinator: NSObject, WKNavigationDelegate {
+        let onLoaded: () -> Void
+        let onAddToCartAttempt: () -> Void
+        let onAddToCartResult: (Bool) -> Void
+        var hasAttemptedAddToCart = false
+
+        init(onLoaded: @escaping () -> Void, onAddToCartAttempt: @escaping () -> Void, onAddToCartResult: @escaping (Bool) -> Void) {
+            self.onLoaded = onLoaded
+            self.onAddToCartAttempt = onAddToCartAttempt
+            self.onAddToCartResult = onAddToCartResult
+        }
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            guard let url = webView.url?.absoluteString,
+                  url.contains("amazon.com") else { return }
+
+            onLoaded()
+
+            // Only try on product page (not sign-in or other redirects)
+            guard url.contains("/dp/") else { return }
+            guard !hasAttemptedAddToCart else { return }
+            hasAttemptedAddToCart = true
+
+            // Wait for dynamic content (Add to Cart button), then inject click
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                self.onAddToCartAttempt()
+                self.tryAddToCart(webView: webView)
+            }
+        }
+
+        private func tryAddToCart(webView: WKWebView) {
+            let script = """
+            (function() {
+                var selectors = ['#add-to-cart-button', 'input#add-to-cart-button', '[name="submit.add-to-cart"]', 'input[name="submit.add-to-cart"]', '#addToCart', 'input[id*="add-to-cart"]'];
+                for (var i = 0; i < selectors.length; i++) {
+                    var el = document.querySelector(selectors[i]);
+                    if (el) { el.click(); return true; }
+                }
+                var inputs = document.querySelectorAll('input[type="submit"], input[type="button"]');
+                for (var j = 0; j < inputs.length; j++) {
+                    if (inputs[j].value && (inputs[j].value.includes('Add to Cart') || inputs[j].value.includes('Add to Basket'))) {
+                        inputs[j].click(); return true;
+                    }
+                }
+                return false;
+            })();
+            """
+            webView.evaluateJavaScript(script) { result, error in
+                DispatchQueue.main.async {
+                    let success = (result as? Bool) ?? false
+                    self.onAddToCartResult(success)
+                }
+            }
+        }
+    }
 }

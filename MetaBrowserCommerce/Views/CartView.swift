@@ -11,33 +11,31 @@ struct CartView: View {
     @EnvironmentObject var appState: AppState
     @State private var showCheckout = false
     @State private var checkoutItemsSource: CheckoutSource = .cart
+    @State private var demoCartItems: [CartItem] = [
+        CartItem(
+            product: ProductResult(
+                title: "Nike Revolution 7",
+                description: "Size 10",
+                price: 69.97,
+                source: "Nike",
+                imageURL: nil
+            ),
+            quantity: 1
+        ),
+        CartItem(
+            product: ProductResult(
+                title: "iPhone 16",
+                description: "128GB",
+                price: 799,
+                source: "Apple",
+                imageURL: nil
+            ),
+            quantity: 1
+        ),
+    ]
 
     private var cartItems: [CartItem] {
-        if appState.cart.isEmpty {
-            return [
-                CartItem(
-                    product: ProductResult(
-                        title: "Nike Revolution 7",
-                        description: "Size 10",
-                        price: 69.97,
-                        source: "Nike",
-                        imageURL: nil
-                    ),
-                    quantity: 1
-                ),
-                CartItem(
-                    product: ProductResult(
-                        title: "iPhone 16",
-                        description: "128GB",
-                        price: 799,
-                        source: "Apple",
-                        imageURL: nil
-                    ),
-                    quantity: 1
-                ),
-            ]
-        }
-        return appState.cart
+        appState.cart.isEmpty ? demoCartItems : appState.cart
     }
 
     private var pendingItems: [CartItem] {
@@ -63,6 +61,18 @@ struct CartView: View {
 
     private var total: Decimal {
         cartItems.reduce(0) { $0 + $1.product.price * Decimal($1.quantity) }
+    }
+
+    private func removeFromCart(_ item: CartItem) {
+        if appState.cart.isEmpty {
+            demoCartItems.removeAll { $0.id == item.id }
+        } else {
+            appState.cart.removeAll { $0.id == item.id }
+        }
+    }
+
+    private func removeFromPending(_ item: CartItem) {
+        appState.pendingCheckoutItems.removeAll { $0.id == item.id }
     }
 
     var body: some View {
@@ -119,6 +129,15 @@ struct CartView: View {
                             .foregroundStyle(AppTheme.textSecondary)
                     }
                     Spacer()
+                    Button {
+                        removeFromCart(item)
+                    } label: {
+                        Image(systemName: "trash")
+                            .font(.body)
+                            .foregroundStyle(AppTheme.textTertiary)
+                            .padding(8)
+                    }
+                    .buttonStyle(.plain)
                 }
                 .padding(.vertical, 12)
                 .overlay(
@@ -185,6 +204,15 @@ struct CartView: View {
                             .foregroundStyle(AppTheme.textSecondary)
                     }
                     Spacer()
+                    Button {
+                        removeFromPending(item)
+                    } label: {
+                        Image(systemName: "trash")
+                            .font(.callout)
+                            .foregroundStyle(AppTheme.textTertiary)
+                            .padding(6)
+                    }
+                    .buttonStyle(.plain)
                 }
                 .padding(14)
                 .background(AppTheme.cardBackground)
