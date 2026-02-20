@@ -45,6 +45,19 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fb-viewapp</string>
+	</array>
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		<string>com.meta.ar.wearable</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-peripheral</string>
+		<string>external-accessory</string>
+	</array>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Meta Browser Commerce uses Bluetooth to pair with Meta AI Glasses for hands-free voice shopping.</string>
 	<key>NSMicrophoneUsageDescription</key>
@@ -66,6 +79,10 @@
 	</array>
 	<key>MWDAT</key>
 	<dict>
+		<key>AppLinkURLScheme</key>
+		<string>metabrowsercommerce://</string>
+		<key>MetaAppID</key>
+		<string>0</string>
 		<key>Analytics</key>
 		<dict>
 			<key>OptOut</key>

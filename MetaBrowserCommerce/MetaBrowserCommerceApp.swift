@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MWDATCore
 
 @main
 struct MetaBrowserCommerceApp: App {
@@ -32,13 +33,24 @@ struct MetaBrowserCommerceApp: App {
     }
 
     private func handleURL(_ url: URL) {
-        guard url.scheme == "metabrowsercommerce",
-              url.host == "search",
-              let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-              let query = components.queryItems?.first(where: { $0.name == "q" })?.value
-        else { return }
+        guard url.scheme == "metabrowsercommerce" else { return }
 
         Task { @MainActor in
+            // Meta AI app callback after registration — required for pairing
+            do {
+                _ = try await Wearables.shared.handleUrl(url)
+            } catch {
+                #if DEBUG
+                print("[MetaBrowserCommerce] Wearables handleUrl: \(error)")
+                #endif
+            }
+
+            // Our search deep link
+            guard url.host == "search",
+                  let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+                  let query = components.queryItems?.first(where: { $0.name == "q" })?.value
+            else { return }
+
             let (searchURL, results) = SearchService.runSearch(query: query)
             appState.lastVoiceQuery = query
             appState.searchURL = searchURL
